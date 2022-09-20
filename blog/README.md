@@ -1,1 +1,3 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+```bash
+yarn create next-app blog --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
+```
