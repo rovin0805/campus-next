@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import Layout, { siteTitle } from '../components/layout';
-import { getSortedPostsData } from '../lib/posts';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 import Date from '../components/date';
+import { getSortedPostsData } from '../lib/posts';
 
 export default function Home({ allPostsData }) {
   const [csrPostsData, setCsrPostsData] = useState([]);
@@ -21,6 +21,10 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
+
+      <Link href={`/posts/write`}>
+        <a>Write a post</a>
+      </Link>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h4>Blog Data from SSG</h4>
@@ -57,16 +61,7 @@ export default function Home({ allPostsData }) {
   );
 }
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    },
-  };
-}
-
-//export async function getServerSideProps() {
+//export async function getStaticProps() {
 //  const allPostsData = getSortedPostsData();
 //  return {
 //    props: {
@@ -74,3 +69,12 @@ export async function getStaticProps() {
 //    },
 //  };
 //}
+
+export async function getServerSideProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+}
